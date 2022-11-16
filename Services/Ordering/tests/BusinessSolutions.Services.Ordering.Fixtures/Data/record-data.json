@@ -1,0 +1,33 @@
+{
+  "order": {
+    "Id": 1,
+    "Number": "c04f05c0-f6ad-44d1-a400-3375bfb5dfd6",
+    "Date": "2018-01-01T00:00:00+00:00",
+    "IsInactive": false,
+    "ProviderId": 1,
+    "Provider": {
+      "ProviderId": 1,
+      "ProviderName": "Considine-Bauch"
+    },
+    "Items": [
+      {
+        "ItemId": 1,
+        "OrderId": 1,
+        "Name": "GOOD KID, m.A.A.d CITY",
+        "Quantity": 1,
+        "Unit": "Item"
+      }
+    ]
+  },
+  "item": {
+    "ItemId": 1,
+    "OrderId": 1,
+    "Name": "GOOD KID, m.A.A.d CITY",
+    "Quantity": 1,
+    "Unit": "Item"
+  },
+  "provider": {
+    "ProviderId": 1,
+    "ProviderName": "Considine-Bauch"
+  }
+}
