@@ -51,7 +51,10 @@
                                             <div class="invalid-feedback">The Name field is required.</div>
                                         </td>
                                         <td><input asp-for="Order.Items![i].Quantity" type="number" min="1" style="max-width:80px;" disabled="@Model?.ReadOnly" /></td>
-                                        <td><input asp-for="Order.Items![i].Unit" style="max-width:80px;" disabled="@Model?.ReadOnly" /></td>
+                                        <td>
+                                            <input asp-for="Order.Items![i].Unit" style="max-width:80px;" disabled="@Model?.ReadOnly" required />
+                                            <div class="invalid-feedback">The Item field is required.</div>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>

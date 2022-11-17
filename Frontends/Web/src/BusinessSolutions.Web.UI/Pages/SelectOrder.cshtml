@@ -2,9 +2,9 @@
 @model SelectOrderModel
 @{
     ViewBag.Workflow = "SelectOrder";
-    bool modal = TempData["modal"] as bool? ?? HttpContext.Request.Query["task"] == "View";
-    string? task = TempData["Task"]?.ToString();
-    string? orderNumber = TempData["id"]?.ToString();
+    var modal = TempData["modal"] as bool? ?? HttpContext.Request.Query["task"] == "View";
+    var task = TempData["Task"]?.ToString();
+    var orderNumber = TempData["id"]?.ToString();
     TempData["orders"] = Model.Orders?.Serialize();
     TempData["filter"] = Model.Filter?.Serialize();
 }

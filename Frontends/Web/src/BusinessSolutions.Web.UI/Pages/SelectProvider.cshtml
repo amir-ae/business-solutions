@@ -2,8 +2,8 @@
 @model SelectProvider
 @{
     ViewBag.Workflow = "SelectProvider";
-    bool modal = TempData["modal"] as bool? ?? HttpContext.Request.Query["task"] == "Create";
-    string? task = TempData["Task"]?.ToString();
+    var modal = TempData["modal"] as bool? ?? HttpContext.Request.Query["task"] == "Create";
+    var task = TempData["Task"]?.ToString();
     int.TryParse(TempData["id"]?.ToString(), out int providerId);
     TempData["providers"] = System.Text.Json.JsonSerializer.Serialize(Model.Providers);
 }
