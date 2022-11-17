@@ -3,6 +3,7 @@ using BusinessSolutions.Web.Application.ViewModels;
 using BusinessSolutions.Web.Application.Providers.Queries.GetProvider;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using BusinessSolutions.Web.Domain.Models;
 
 namespace BusinessSolutions.Web.UI.Components;
 
@@ -17,34 +18,33 @@ public class ProviderEditorViewComponent : ViewComponent
         _mapper = mapper;
     }
 
-    public ProviderWindowViewModel ProviderViewModel { get; set; } = new();
+    public ProviderWindowViewModel ViewModel { get; set; } = new();
 
     public async Task<IViewComponentResult> InvokeAsync(int? id, string? task)
     {
         if (id is null || id == 0 || string.IsNullOrEmpty(task))
         {
-            ProviderViewModel = _mapper.Map<ProviderWindowViewModel>(WindowViewModelFactory.Create(new ProviderViewModel()));
+            ViewModel = _mapper.Map<ProviderWindowViewModel>(WindowViewModelFactory.Create(new Provider()));
         }
         else
         {
             var response = await _mediator.Send(new GetProviderQuery { ProviderId = (int)id });         
             if (response is not null && !string.IsNullOrEmpty(task))
             {
-                var provider = _mapper.Map<ProviderViewModel>(response);
                 switch (task.ToUpperInvariant())
                 {
                     case "VIEW":
-                        ProviderViewModel = _mapper.Map<ProviderWindowViewModel>(WindowViewModelFactory.View(provider));
+                        ViewModel = _mapper.Map<ProviderWindowViewModel>(WindowViewModelFactory.View(response));
                         break;
                     case "EDIT":
-                        ProviderViewModel = _mapper.Map<ProviderWindowViewModel>(WindowViewModelFactory.Edit(provider));
+                        ViewModel = _mapper.Map<ProviderWindowViewModel>(WindowViewModelFactory.Edit(response));
                         break;
                     case "DELETE":
-                        ProviderViewModel = _mapper.Map<ProviderWindowViewModel>(WindowViewModelFactory.Delete(provider));
+                        ViewModel = _mapper.Map<ProviderWindowViewModel>(WindowViewModelFactory.Delete(response));
                         break;
                 };
             }
         }
-        return View(ProviderViewModel);
+        return View(ViewModel);
     }
 }

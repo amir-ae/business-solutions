@@ -6,9 +6,9 @@ using MediatR;
 
 namespace BusinessSolutions.Web.Application.ViewModels
 {
-    public class OrderWindowViewModel : IMapFrom<WindowViewModel<OrderViewModel>>
+    public class OrderWindowViewModel : IMapFrom<WindowViewModel<Order>>
     {
-        public OrderViewModel Order { get; set; } = new();
+        public Order Order { get; set; } = new();
         public List<Provider> Providers { get; set; } = new();
         public string Action { get; set; } = string.Empty;
         public bool ReadOnly { get; set; }
@@ -19,12 +19,12 @@ namespace BusinessSolutions.Web.Application.ViewModels
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<WindowViewModel<OrderViewModel>, OrderWindowViewModel>()
-                .ForMember(p => p.Order, op => op.MapFrom(v => v.ModelData ?? new OrderViewModel()))
+            profile.CreateMap<WindowViewModel<Order>, OrderWindowViewModel>()
+                .ForMember(p => p.Order, op => op.MapFrom(v => v.ModelData ?? new Order()))
                 .ForMember(p => p.Providers, op => op.MapFrom<ProvidersResolver>());
         }
 
-        public class ProvidersResolver : IValueResolver<WindowViewModel<OrderViewModel>, OrderWindowViewModel, List<Provider>>
+        public class ProvidersResolver : IValueResolver<WindowViewModel<Order>, OrderWindowViewModel, List<Provider>>
         {
             private readonly IMediator mediator;
 
@@ -33,7 +33,7 @@ namespace BusinessSolutions.Web.Application.ViewModels
                 this.mediator = mediator;
             }
 
-            public List<Provider> Resolve(WindowViewModel<OrderViewModel> source, OrderWindowViewModel destination, 
+            public List<Provider> Resolve(WindowViewModel<Order> source, OrderWindowViewModel destination, 
                 List<Provider> destMember, ResolutionContext context)
             {
                 return mediator.Send(new GetProvidersWithPaginationQuery { PageSize = int.MaxValue })

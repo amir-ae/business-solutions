@@ -16,6 +16,24 @@ namespace BusinessSolutions.Services.Ordering.Infrastructure.SchemaDefinitions
 
             builder.Property(p => p.ProviderId)
                 .IsRequired();
+
+            builder.HasData(
+                 new Order() { Id = 1, Number = RandomNumber(), Date = RandomDate(), ProviderId = 1 },
+                 new Order() { Id = 2, Number = RandomNumber(), Date = RandomDate(), ProviderId = 2 },
+                 new Order() { Id = 3, Number = RandomNumber(), Date = RandomDate(), ProviderId = 3 }
+            );
+        }
+
+        string RandomNumber()
+        {
+            return Guid.NewGuid().ToString();
+        }
+
+        DateTime RandomDate()
+        {
+            DateTime start = new DateTime(2010, 1, 1);
+            int range = (DateTime.Today - start).Days;
+            return start.AddDays(new Random().Next(range));
         }
     }
 }

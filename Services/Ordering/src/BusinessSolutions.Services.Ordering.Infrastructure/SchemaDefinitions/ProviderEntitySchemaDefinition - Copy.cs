@@ -13,6 +13,14 @@ namespace BusinessSolutions.Services.Ordering.Infrastructure.SchemaDefinitions
 
             builder.Property(p => p.ProviderName)
                 .IsRequired();
+
+            builder.HasData(
+                new Provider() { ProviderId = 1, ProviderName = "Considine-Bauch" },
+                new Provider() { ProviderId = 2, ProviderName = "Herzog PLC" },
+                new Provider() { ProviderId = 3, ProviderName = "Steuber, Considine and Hermann" },
+                new Provider() { ProviderId = 4, ProviderName = "Klocko Group" },
+                new Provider() { ProviderId = 5, ProviderName = "Stracke Group" }
+            );
         }
     }
 }
