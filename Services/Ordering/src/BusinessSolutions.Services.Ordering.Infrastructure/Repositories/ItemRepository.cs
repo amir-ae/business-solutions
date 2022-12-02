@@ -18,6 +18,7 @@ namespace BusinessSolutions.Services.Ordering.Infrastructure.Repositories
         {
             return await _context
                 .Items
+                .AsNoTracking()
                 .AnyAsync(e => e.ItemId == id);
         }
 

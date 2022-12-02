@@ -1,4 +1,4 @@
-﻿namespace Ordering.Infrastructure.Tests
+﻿namespace BusinessSolutions.Services.Ordering.Infrastructure.Tests
 {
     public class ProviderRepositoryTests : IClassFixture<OrderingContextFactory>
     {

@@ -11,7 +11,7 @@ namespace BusinessSolutions.Services.Ordering.Fixtures
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            //base.OnModelCreating(modelBuilder);
 
             modelBuilder.Seed<Item>("./Data/item.json");
             modelBuilder.Seed<Provider>("./Data/provider.json");

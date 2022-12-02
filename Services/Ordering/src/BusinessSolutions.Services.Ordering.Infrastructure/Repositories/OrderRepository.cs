@@ -18,6 +18,7 @@ namespace BusinessSolutions.Services.Ordering.Infrastructure.Repositories
         {
             return await _context
                 .Orders
+                .AsNoTracking()
                 .AnyAsync(e => e.Number == number);
         }
 
@@ -25,6 +26,7 @@ namespace BusinessSolutions.Services.Ordering.Infrastructure.Repositories
         {
             return await _context
                 .Orders
+                .AsNoTracking()
                 .AnyAsync(e => e.Id == id);
         } 
 

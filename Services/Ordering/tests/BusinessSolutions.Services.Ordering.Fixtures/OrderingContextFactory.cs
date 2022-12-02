@@ -20,11 +20,11 @@ namespace BusinessSolutions.Services.Ordering.Fixtures
 
             ContextInstance = new TestOrderingContext(contextOptions);
 
-            var _mapperConfig = new MapperConfiguration(cfg =>
+            var mapperConfig = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<OrderingProfile>();
             });
-            Mapper = _mapperConfig.CreateMapper();
+            Mapper = mapperConfig.CreateMapper();
         }
 
         private void EnsureCreation(DbContextOptions<OrderingContext> contextOptions)
